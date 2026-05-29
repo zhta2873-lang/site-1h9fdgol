@@ -1,0 +1,435 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NovaChat ULTRA PRO</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0b1120;
+height:100vh;
+overflow:hidden;
+}
+
+.app{
+max-width:430px;
+height:100vh;
+margin:auto;
+background:linear-gradient(180deg,#0f172a,#111827);
+display:flex;
+flex-direction:column;
+position:relative;
+overflow:hidden;
+}
+
+.header{
+height:75px;
+padding:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:rgba(255,255,255,0.04);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+color:white;
+font-size:22px;
+font-weight:bold;
+}
+
+.logo img{
+width:50px;
+height:50px;
+border-radius:50%;
+}
+
+.header-icons{
+display:flex;
+gap:18px;
+font-size:22px;
+color:white;
+}
+
+.search{
+padding:12px;
+}
+
+.search input{
+width:100%;
+padding:14px;
+border:none;
+border-radius:18px;
+background:#1e293b;
+color:white;
+outline:none;
+font-size:15px;
+}
+
+.stories{
+display:flex;
+gap:14px;
+overflow-x:auto;
+padding:10px;
+}
+
+.story{
+min-width:75px;
+text-align:center;
+color:white;
+font-size:13px;
+}
+
+.story img{
+width:68px;
+height:68px;
+border-radius:50%;
+border:3px solid #38bdf8;
+object-fit:cover;
+margin-bottom:5px;
+}
+
+.chat-list{
+flex:1;
+overflow-y:auto;
+padding:12px;
+}
+
+.chat{
+display:flex;
+align-items:center;
+gap:12px;
+padding:13px;
+margin-bottom:12px;
+border-radius:22px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+transition:0.3s;
+cursor:pointer;
+}
+
+.chat:hover{
+transform:scale(1.02);
+background:rgba(255,255,255,0.08);
+}
+
+.chat img{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.chat-info{
+flex:1;
+color:white;
+}
+
+.chat-info h3{
+font-size:17px;
+margin-bottom:5px;
+}
+
+.chat-info p{
+font-size:13px;
+color:#cbd5e1;
+}
+
+.time{
+font-size:12px;
+color:#38bdf8;
+}
+
+.online{
+width:12px;
+height:12px;
+background:#22c55e;
+border-radius:50%;
+position:absolute;
+margin-left:45px;
+margin-top:42px;
+border:2px solid #111827;
+}
+
+.bottom-nav{
+height:72px;
+display:flex;
+justify-content:space-around;
+align-items:center;
+background:rgba(255,255,255,0.04);
+backdrop-filter:blur(10px);
+border-top:1px solid rgba(255,255,255,0.05);
+}
+
+.bottom-nav button{
+background:none;
+border:none;
+color:white;
+font-size:24px;
+transition:0.3s;
+}
+
+.bottom-nav button:hover{
+color:#38bdf8;
+transform:translateY(-4px);
+}
+
+.floating{
+position:absolute;
+right:20px;
+bottom:90px;
+width:65px;
+height:65px;
+border-radius:50%;
+border:none;
+background:linear-gradient(45deg,#06b6d4,#3b82f6);
+color:white;
+font-size:28px;
+box-shadow:0 0 25px rgba(59,130,246,0.7);
+cursor:pointer;
+}
+
+.login-screen{
+position:fixed;
+inset:0;
+background:#020617;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.login-box{
+width:90%;
+max-width:360px;
+padding:30px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+border-radius:30px;
+text-align:center;
+}
+
+.login-box h1{
+color:white;
+margin-bottom:25px;
+font-size:32px;
+}
+
+.login-box p{
+color:#94a3b8;
+margin-bottom:20px;
+font-size:14px;
+}
+
+.login-box input{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:none;
+border-radius:16px;
+background:#0f172a;
+color:white;
+outline:none;
+font-size:15px;
+}
+
+.login-box button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:16px;
+background:linear-gradient(45deg,#06b6d4,#3b82f6);
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.hidden{
+display:none;
+}
+
+.profile-box{
+position:absolute;
+top:85px;
+right:15px;
+width:200px;
+padding:15px;
+border-radius:18px;
+background:#1e293b;
+color:white;
+display:none;
+}
+
+.profile-box img{
+width:60px;
+height:60px;
+border-radius:50%;
+margin-bottom:10px;
+}
+
+.profile-box h3{
+margin-bottom:5px;
+}
+
+.profile-box p{
+font-size:13px;
+color:#94a3b8;
+}
+
+::-webkit-scrollbar{
+display:none;
+}
+</style></head>
+<body><div class="login-screen" id="loginScreen">
+<div class="login-box">
+<h1>NovaChat</h1>
+<p>ULTRA PRO Messenger</p>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Create Account</button>
+</div>
+</div><div class="app hidden" id="app"><div class="header">
+<div class="logo">
+<img src="https://i.imgur.com/6VBx3io.png">
+<span>NovaChat</span>
+</div><div class="header-icons">
+<i class="fa-solid fa-bell"></i>
+<i class="fa-solid fa-camera"></i>
+<i class="fa-solid fa-user" onclick="toggleProfile()"></i>
+</div>
+</div><div class="profile-box" id="profileBox">
+<img id="profileImage" src="https://i.pravatar.cc/100?img=12">
+<h3 id="profileName">User</h3>
+<p id="profileId">ID: 000001</p>
+<p>Premium User 🚀</p>
+<p>Status: Online 🟢</p>
+<p>FPS BOOST MODE ⚡</p>
+</div><div class="search">
+<input type="text" placeholder="Search chats...">
+</div><div class="stories">
+<div class="story">
+<img src="https://i.pravatar.cc/100?img=1">
+<p>Alex</p>
+</div><div class="story">
+<img src="https://i.pravatar.cc/100?img=2">
+<p>Sarah</p>
+</div><div class="story">
+<img src="https://i.pravatar.cc/100?img=3">
+<p>Daniel</p>
+</div><div class="story">
+<img src="https://i.pravatar.cc/100?img=4">
+<p>Noah</p>
+</div><div class="story">
+<img src="https://i.pravatar.cc/100?img=5">
+<p>Emma</p>
+</div>
+</div><div class="chat-list"><div class="chat">
+<div class="online"></div>
+<img src="https://i.pravatar.cc/100?img=11">
+<div class="chat-info">
+<h3>Alex</h3>
+<p>Hello bro 🔥</p>
+</div>
+<div class="time">2m</div>
+</div><div class="chat">
+<div class="online"></div>
+<img src="https://i.pravatar.cc/100?img=22">
+<div class="chat-info">
+<h3>Sarah</h3>
+<p>Where are you 😂</p>
+</div>
+<div class="time">5m</div>
+</div><div class="chat">
+<img src="https://i.pravatar.cc/100?img=33">
+<div class="chat-info">
+<h3>Noah</h3>
+<p>Send me the files ✅</p>
+</div>
+<div class="time">8m</div>
+</div><div class="chat">
+<img src="https://i.pravatar.cc/100?img=44">
+<div class="chat-info">
+<h3>Emma</h3>
+<p>Your app looks amazing 😍</p>
+</div>
+<div class="time">15m</div>
+</div><div class="chat">
+<div class="online"></div>
+<img src="https://i.pravatar.cc/100?img=55">
+<div class="chat-info">
+<h3>William</h3>
+<p>New design uploaded 🚀</p>
+</div>
+<div class="time">20m</div>
+</div></div><button class="floating">
+<i class="fa-solid fa-plus"></i>
+</button><div class="bottom-nav">
+<button><i class="fa-solid fa-house"></i></button>
+<button><i class="fa-solid fa-comments"></i></button>
+<button><i class="fa-solid fa-video"></i></button>
+<button><i class="fa-solid fa-user"></i></button>
+</div></div><script>
+function login(){
+const user = document.getElementById('username').value;
+const pass = document.getElementById('password').value;
+
+if(user.length < 3 || pass.length < 3){
+alert('Please enter valid information');
+return;
+}
+
+localStorage.setItem('novachat_user',user);
+const randomId = Math.floor(Math.random()*999999);
+localStorage.setItem('novachat_id',randomId);
+
+document.getElementById('profileName').innerText = user;
+document.getElementById('profileId').innerText = 'ID: '+localStorage.getItem('novachat_id');
+
+document.getElementById('loginScreen').classList.add('hidden');
+document.getElementById('app').classList.remove('hidden');
+
+alert('Welcome '+user+' 🚀');
+}
+
+function toggleProfile(){
+const box = document.getElementById('profileBox');
+
+if(box.style.display === 'block'){
+box.style.display = 'none';
+}else{
+box.style.display = 'block';
+}
+}
+
+const chats = document.querySelectorAll('.chat');
+
+chats.forEach(chat=>{
+chat.onclick = ()=>{
+alert('Opening Chat...');
+}
+})
+
+document.querySelector('.floating').onclick = ()=>{
+alert('Create New Chat ✨');
+}
+// Premium Kids Mode
+const kidsMode = {
+name: 'Kids Premium',
+emoji: '🧸',
+welcome: 'Welcome to Kids Premium 🌈'
+};
+
+console.log(kidsMode.welcome);
+</script></body>
+</html>
